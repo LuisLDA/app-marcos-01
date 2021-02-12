@@ -15,9 +15,11 @@
 		<h2>Registro de Personas</h2>
 		<p:panelGrid columns="2">
 			<p:outputLabel>Nombre</p:outputLabel>
+		
+			
 			<p:inputText value="#{personaB.persona.persNombre}"/>
 			<p:outputLabel>Edad</p:outputLabel>
-			<p:inputText value="#{personaB.persona.persEdad}"/>
+			<p:inputText value="#{personaB.persona.persEdad}" type="number"/>
 			<p:commandButton value="Grabar"
 				actionListener="#{personaB.crearPersona}"
 				update="personaForm"/>
