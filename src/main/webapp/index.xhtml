@@ -1,0 +1,21 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta content='text/html; charset=UTF-8' http-equiv="Content-Type" />
+	<title>Estudio Actuarial</title>
+</h:head>
+
+<h:body>
+	<p:dataTable id="products" var="persona" value="#{personaB.personas}">
+		<p:column headerText="Nombre">
+			<h:outputText value="#{persona.persNombre}" />
+		</p:column>
+		<p:column headerText="Edad">
+			<h:outputText value="#{persona.persEdad}" />
+		</p:column>
+	</p:dataTable>
+</h:body>
+</html>
