@@ -26,8 +26,8 @@ public class PersonaBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		setPersona(new Persona());
 		personas = servicio.listar();
+		persona = new Persona();
 	}
 
 	public List<Persona> getPersonas() {
@@ -38,17 +38,23 @@ public class PersonaBean implements Serializable {
 		this.personas = personas;
 	}
 
-
-
-	public void deleteProduct() {
-
-	}
-
 	public Persona getPersona() {
 		return persona;
 	}
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+	
+	public void crearPersona() {
+		try {
+			servicio.crear(persona);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			persona = new Persona();
+			personas = servicio.listar();
+		}
+
 	}
 }
