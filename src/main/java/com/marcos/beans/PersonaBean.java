@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.RequestScoped;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -12,7 +13,7 @@ import com.marcos.dao.ServicioPersonaI;
 import com.marcos.dto.Persona;
 
 @Named("personaB")
-@ViewScoped
+@RequestScoped
 public class PersonaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -26,8 +27,8 @@ public class PersonaBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		setPersona(new Persona());
 		personas = servicio.listar();
+		persona = new Persona();
 	}
 
 	public List<Persona> getPersonas() {
@@ -38,17 +39,23 @@ public class PersonaBean implements Serializable {
 		this.personas = personas;
 	}
 
-
-
-	public void deleteProduct() {
-
-	}
-
 	public Persona getPersona() {
 		return persona;
 	}
 
 	public void setPersona(Persona persona) {
 		this.persona = persona;
+	}
+	
+	public void crearPersona() {
+		try {
+			servicio.crear(persona);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			persona = new Persona();
+			personas = servicio.listar();
+		}
+
 	}
 }
